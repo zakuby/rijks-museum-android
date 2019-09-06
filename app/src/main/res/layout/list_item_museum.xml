@@ -31,7 +31,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/list_item_museum_image_desc"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{model.webImage.url}"
+                app:loadImageUrl="@{model.webImage.url}"
                 tools:src="@drawable/img_dummy" />
 
             <LinearLayout

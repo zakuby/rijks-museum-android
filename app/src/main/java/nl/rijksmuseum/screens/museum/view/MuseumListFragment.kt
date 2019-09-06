@@ -11,6 +11,7 @@ import dagger.android.support.DaggerFragment
 import nl.rijksmuseum.databinding.FragmentMuseumListBinding
 import nl.rijksmuseum.screens.museum.adapter.MuseumListAdapter
 import nl.rijksmuseum.screens.museum.viewmodel.MuseumListViewModel
+import nl.rijksmuseum.utils.Constants
 import nl.rijksmuseum.utils.ext.observe
 import javax.inject.Inject
 
@@ -50,6 +51,10 @@ class MuseumListFragment : DaggerFragment() {
     private fun subscribeUI() {
         observe(viewModel.getMuseumCollections()) { museums ->
             adapter.loadMuseumCollections(museums)
+        }
+        observe(viewModel.getLoading()) { isLoading ->
+            // TODO(Add loading)
+            Constants.log("is fetching collections : $isLoading")
         }
     }
 }

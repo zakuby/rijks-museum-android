@@ -5,9 +5,8 @@ import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 import nl.rijksmuseum.R
 
-
-@BindingAdapter("imageUrl")
-fun imageUrl(imgView: ImageView, url: String?) {
+@BindingAdapter("loadImageUrl")
+fun loadImageUrl(imgView: ImageView, url: String?) {
     if (url.isNullOrBlank()) return
     Picasso.get()
         .load(url)

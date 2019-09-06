@@ -28,11 +28,9 @@ class MuseumListAdapter : RecyclerView.Adapter<MuseumListAdapter.ViewHolder>() {
         holder.bind(museum)
     }
 
-
     inner class ViewHolder(
         private val binding: ListItemMuseumBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(model: Museum) = binding.apply { this.model = model }
     }
-
 }

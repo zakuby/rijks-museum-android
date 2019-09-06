@@ -16,4 +16,8 @@ abstract class BaseViewModel : ViewModel() {
         super.onCleared()
         if (!compositeDisposable.isDisposed) compositeDisposable.clear()
     }
+
+    protected fun setLoading() = loading.postValue(true)
+
+    protected fun finishLoading() = loading.postValue(false)
 }

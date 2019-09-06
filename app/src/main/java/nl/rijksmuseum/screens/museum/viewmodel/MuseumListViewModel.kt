@@ -24,6 +24,8 @@ class MuseumListViewModel @Inject constructor(
         service.getMuseumCollection()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { setLoading() }
+            .doAfterTerminate { finishLoading() }
             .subscribeBy (
                 onSuccess = { resp ->
                     resp.museums?.let { museums ->
