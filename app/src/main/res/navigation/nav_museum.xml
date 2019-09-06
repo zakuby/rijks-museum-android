@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_museum"
+    app:startDestination="@id/museumListFragment">
+
+    <fragment
+        android:id="@+id/museumListFragment"
+        android:name="nl.rijksmuseum.screens.museum.view.MuseumListFragment"
+        android:label="MuseumListFragment"
+        tools:layout="@layout/fragment_museum_list">
+        <action
+            android:id="@+id/action_museumListFragment_to_museumDetailFragment"
+            app:destination="@id/museumDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/museumDetailFragment"
+        android:name="nl.rijksmuseum.screens.museum.view.MuseumDetailFragment"
+        android:label="MuseumDetailFragment"
+        tools:layout="@layout/fragment_museum_detail"/>
+</navigation>
