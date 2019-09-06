@@ -8,6 +8,6 @@ import nl.rijksmuseum.screens.museum.view.MuseumActivity
 @Module
 abstract class ActivityModule {
     @ActivityScoped
-    @ContributesAndroidInjector
-    abstract fun contributeMuseumActivity() : MuseumActivity
+    @ContributesAndroidInjector(modules = [MuseumActivityModule::class])
+    abstract fun contributeMuseumActivity(): MuseumActivity
 }

@@ -10,15 +10,19 @@ import dagger.android.support.AndroidSupportInjectionModule
 import nl.rijksmuseum.core.base.BaseApplication
 import nl.rijksmuseum.core.dagger.module.ActivityModule
 import nl.rijksmuseum.core.dagger.module.NetworkModule
+import nl.rijksmuseum.core.dagger.module.ViewModelModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [
-    AndroidInjectionModule::class,
-    AndroidSupportInjectionModule::class,
-    ActivityModule::class,
-    NetworkModule::class
-])
+@Component(
+    modules = [
+        AndroidInjectionModule::class,
+        AndroidSupportInjectionModule::class,
+        ActivityModule::class,
+        NetworkModule::class,
+        ViewModelModule::class
+    ]
+)
 interface AppComponent : AndroidInjector<DaggerApplication> {
 
     fun inject(application: BaseApplication)

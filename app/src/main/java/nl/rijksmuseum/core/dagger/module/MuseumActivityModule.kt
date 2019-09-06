@@ -10,9 +10,9 @@ import nl.rijksmuseum.screens.museum.view.MuseumListFragment
 abstract class MuseumActivityModule {
     @FragmentScoped
     @ContributesAndroidInjector
-    abstract fun contributeMuseumListFragment() : MuseumListFragment
+    abstract fun contributeMuseumListFragment(): MuseumListFragment
 
     @FragmentScoped
     @ContributesAndroidInjector
-    abstract fun contributeMuseumDetailFragment() : MuseumDetailFragment
+    abstract fun contributeMuseumDetailFragment(): MuseumDetailFragment
 }

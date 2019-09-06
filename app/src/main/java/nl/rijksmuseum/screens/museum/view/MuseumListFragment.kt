@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import nl.rijksmuseum.databinding.FragmentMuseumListBinding
+import nl.rijksmuseum.screens.museum.adapter.MuseumListAdapter
 import nl.rijksmuseum.screens.museum.viewmodel.MuseumListViewModel
-import nl.rijksmuseum.utils.Constants
 import nl.rijksmuseum.utils.ext.observe
 import javax.inject.Inject
 
@@ -18,6 +19,8 @@ class MuseumListFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel: MuseumListViewModel by viewModels { viewModelFactory }
+
+    private val adapter: MuseumListAdapter by lazy { MuseumListAdapter() }
 
     private lateinit var binding: FragmentMuseumListBinding
 
@@ -30,15 +33,23 @@ class MuseumListFragment : DaggerFragment() {
             .apply {
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = this@MuseumListFragment.viewModel
+                recyclerView.apply {
+                    layoutManager = LinearLayoutManager(requireActivity())
+                    adapter = this@MuseumListFragment.adapter
+                }
             }
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewModel.fetchMuseumCollections()
+        subscribeUI()
+    }
+
+    private fun subscribeUI() {
         observe(viewModel.getMuseumCollections()) { museums ->
-            //TODO("Load museum data to recyclerView Adapter")
-            Constants.log("$museums")
+            adapter.loadMuseumCollections(museums)
         }
     }
 }

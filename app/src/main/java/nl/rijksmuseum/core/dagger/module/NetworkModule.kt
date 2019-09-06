@@ -7,7 +7,6 @@ import dagger.Module
 import dagger.Provides
 import nl.rijksmuseum.BuildConfig
 import nl.rijksmuseum.core.network.service.MuseumApiService
-import nl.rijksmuseum.models.Museum
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,11 +21,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGson(): Gson {
-        val gsonBuilder = GsonBuilder()
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-        return gsonBuilder.create()
-    }
+    fun provideGson(): Gson = GsonBuilder().create()
 
     @Provides
     @Singleton
@@ -67,7 +62,6 @@ class NetworkModule {
             .apply { if (BuildConfig.DEBUG) addInterceptor(httpLoggingInterceptor) }
             .build()
 
-
     @Provides
     @Singleton
     fun provideRetrofit(
@@ -84,5 +78,4 @@ class NetworkModule {
     @Singleton
     fun provideMuseumApiService(retrofit: Retrofit): MuseumApiService =
         retrofit.create(MuseumApiService::class.java)
-
 }

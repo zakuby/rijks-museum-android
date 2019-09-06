@@ -5,6 +5,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dagger.android.support.DaggerAppCompatActivity
+import nl.rijksmuseum.utils.ext.setWhiteStatusBar
 
 abstract class BaseActivity<B : ViewDataBinding> constructor(
     @LayoutRes val layoutRes: Int
@@ -18,6 +19,7 @@ abstract class BaseActivity<B : ViewDataBinding> constructor(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setWhiteStatusBar()
         bindView()
     }
 }

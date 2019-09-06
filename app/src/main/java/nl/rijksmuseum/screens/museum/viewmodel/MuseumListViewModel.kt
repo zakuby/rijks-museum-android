@@ -20,7 +20,7 @@ class MuseumListViewModel @Inject constructor(
 
     fun getMuseumCollections() : LiveData<List<Museum>> = museumCollections
 
-    fun fetchMuseumColections() {
+    fun fetchMuseumCollections() {
         service.getMuseumCollection()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

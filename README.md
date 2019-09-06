@@ -1,8 +1,8 @@
 Rijks Museum Art Android
 =========================
 
-Android application for Rijks Museum Art with MVVM architectural pattern.
-Using public APIS from RIJKS MUSEUM : http://rijksmuseum.github.io/
+Android application for Rijks Museum Art with MVVM architectural pattern.  
+Using public API from Rijks Museum : http://rijksmuseum.github.io/
 
 Libraries Used
 --------------

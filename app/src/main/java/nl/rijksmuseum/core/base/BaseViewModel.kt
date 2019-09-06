@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 abstract class BaseViewModel : ViewModel() {
     protected val loading = MutableLiveData<Boolean>()
 
-    fun getLoading() : LiveData<Boolean> = loading
+    fun getLoading(): LiveData<Boolean> = loading
 
     protected val compositeDisposable = CompositeDisposable()
 

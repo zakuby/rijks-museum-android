@@ -19,10 +19,10 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(MuseumListViewModel::class)
-    internal abstract fun museumListViewModel(viewModel: MuseumListViewModel) : ViewModel
+    internal abstract fun museumListViewModel(viewModel: MuseumListViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(MuseumDetailViewModel::class)
-    internal abstract fun museumDetailViewModel(viewModel: MuseumDetailViewModel) : ViewModel
+    internal abstract fun museumDetailViewModel(viewModel: MuseumDetailViewModel): ViewModel
 }
