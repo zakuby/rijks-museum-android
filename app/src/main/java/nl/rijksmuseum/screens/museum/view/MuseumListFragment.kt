@@ -11,7 +11,6 @@ import dagger.android.support.DaggerFragment
 import nl.rijksmuseum.databinding.FragmentMuseumListBinding
 import nl.rijksmuseum.screens.museum.adapter.MuseumListAdapter
 import nl.rijksmuseum.screens.museum.viewmodel.MuseumListViewModel
-import nl.rijksmuseum.utils.Constants
 import nl.rijksmuseum.utils.ext.observe
 import javax.inject.Inject
 
@@ -53,8 +52,27 @@ class MuseumListFragment : DaggerFragment() {
             adapter.loadMuseumCollections(museums)
         }
         observe(viewModel.getLoading()) { isLoading ->
-            // TODO(Add loading)
-            Constants.log("is fetching collections : $isLoading")
+            if (isLoading) startShimmer() else stopShimmer()
+        }
+    }
+
+    private fun startShimmer() {
+        binding.apply {
+            shimmerView.apply {
+                startShimmer()
+                visibility = View.VISIBLE
+            }
+            recyclerView.visibility = View.GONE
+        }
+    }
+
+    private fun stopShimmer() {
+        binding.apply {
+            shimmerView.apply {
+                stopShimmer()
+                visibility = View.GONE
+            }
+            recyclerView.visibility = View.VISIBLE
         }
     }
 }
