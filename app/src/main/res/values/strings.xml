@@ -7,4 +7,9 @@
     <string name="roboto_thin">sans-serif-black</string>
     <string name="roboto_medium">sans-serif-medium</string>
     <string name="list_item_museum_image_desc">Museum Image</string>
+    <string name="profile_github_account">Github Account</string>
+    <string name="profile_full_name">Nama Lengkap</string>
+    <string name="museum_detail_title">Museum Detail</string>
+    <string name="museum_list_title">Rijks Museum Arts</string>
+    <string name="title_profile">Profile</string>
 </resources>

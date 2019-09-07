@@ -38,8 +38,11 @@ android {
         enabled = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
@@ -49,6 +52,7 @@ ext {
     materialVersion = '1.0.0'
     constraintLayoutVersion = '1.1.3'
     shimmerVersion = '0.4.0'
+    circleImageVersion = '3.0.1'
 
     //networking
     okHttpVersion = '3.12.0'
@@ -80,6 +84,8 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     //Shimmer for loading
     implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
+    //Circle ImageView
+    implementation "de.hdodenhof:circleimageview:$circleImageVersion"
 
     //Android Architecture Component
     //Paging Library

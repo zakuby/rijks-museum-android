@@ -30,6 +30,7 @@ Libraries Used
   * [Dagger 2][92] for Dependency Injection
   * [Retrofit][93] for Networking
   * [Shimmer Facebook][94] is an Android library that provides an easy way to add a shimmer effect to any view in your Android app.
+  * [Circle Image View][94] is a fast circular ImageView perfect for profile images.
 
 [0]: https://developer.android.com/jetpack/components
 [1]: https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat
@@ -50,6 +51,7 @@ Libraries Used
 [92]: https://github.com/google/dagger
 [93]: https://square.github.io/retrofit/
 [94]: http://facebook.github.io/shimmer-android/
+[95]: https://github.com/hdodenhof/CircleImageView
 
 License
 -------

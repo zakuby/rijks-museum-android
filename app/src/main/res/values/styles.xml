@@ -19,4 +19,8 @@
         <item name="android:windowBackground">@drawable/bg_splash_screen</item>
     </style>
 
+    <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
 </resources>

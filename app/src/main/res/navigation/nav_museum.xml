@@ -8,15 +8,23 @@
     <fragment
         android:id="@+id/museumListFragment"
         android:name="nl.rijksmuseum.screens.museum.view.MuseumListFragment"
-        android:label="MuseumListFragment"
+        android:label="@string/museum_list_title"
         tools:layout="@layout/fragment_museum_list">
         <action
             android:id="@+id/action_museumListFragment_to_museumDetailFragment"
-            app:destination="@id/museumDetailFragment" />
+            app:destination="@id/museumDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/museumDetailFragment"
         android:name="nl.rijksmuseum.screens.museum.view.MuseumDetailFragment"
-        android:label="MuseumDetailFragment"
-        tools:layout="@layout/fragment_museum_detail"/>
+        android:label="@string/museum_detail_title"
+        tools:layout="@layout/fragment_museum_detail">
+        <argument
+            android:name="museumId"
+            app:argType="string"/>
+    </fragment>
 </navigation>

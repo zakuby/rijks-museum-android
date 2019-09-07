@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import nl.rijksmuseum.databinding.FragmentMuseumListBinding
 import nl.rijksmuseum.screens.museum.adapter.MuseumListAdapter
 import nl.rijksmuseum.screens.museum.viewmodel.MuseumListViewModel
+import nl.rijksmuseum.utils.Constants
 import nl.rijksmuseum.utils.ext.observe
 import javax.inject.Inject
 
@@ -20,7 +22,9 @@ class MuseumListFragment : DaggerFragment() {
 
     private val viewModel: MuseumListViewModel by viewModels { viewModelFactory }
 
-    private val adapter: MuseumListAdapter by lazy { MuseumListAdapter() }
+    private val adapter: MuseumListAdapter by lazy {
+        MuseumListAdapter{ id -> navigateToDetail(id) }
+    }
 
     private lateinit var binding: FragmentMuseumListBinding
 
@@ -74,5 +78,10 @@ class MuseumListFragment : DaggerFragment() {
             }
             recyclerView.visibility = View.VISIBLE
         }
+    }
+
+    private fun navigateToDetail(museumId: String){
+        val direction = MuseumListFragmentDirections.actionMuseumListFragmentToMuseumDetailFragment(museumId)
+        findNavController().navigate(direction)
     }
 }

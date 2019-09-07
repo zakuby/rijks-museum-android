@@ -2,11 +2,16 @@ package nl.rijksmuseum.screens.museum.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import nl.rijksmuseum.R
 import nl.rijksmuseum.databinding.ListItemMuseumBinding
 import nl.rijksmuseum.models.Museum
+import nl.rijksmuseum.screens.museum.view.MuseumListFragmentDirections
 
-class MuseumListAdapter : RecyclerView.Adapter<MuseumListAdapter.ViewHolder>() {
+class MuseumListAdapter (
+    val onClick: (String) -> Unit
+) : RecyclerView.Adapter<MuseumListAdapter.ViewHolder>() {
 
     private var museums: List<Museum> = emptyList()
 
@@ -25,7 +30,13 @@ class MuseumListAdapter : RecyclerView.Adapter<MuseumListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val museum = museums[position]
-        holder.bind(museum)
+        holder.apply {
+            bind(museum)
+            itemView.setOnClickListener {
+                museum.id ?: return@setOnClickListener
+                onClick(museum.id)
+            }
+        }
     }
 
     inner class ViewHolder(
