@@ -6,19 +6,26 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import nl.rijksmuseum.core.base.BaseViewModel
+import nl.rijksmuseum.core.network.response.ErrorResponse
+import nl.rijksmuseum.core.network.response.ErrorResponseHandler
 import nl.rijksmuseum.core.network.service.MuseumApiService
-import nl.rijksmuseum.models.Museum
+import nl.rijksmuseum.models.MuseumArt
 import nl.rijksmuseum.utils.Constants
 import nl.rijksmuseum.utils.ext.disposedBy
 import javax.inject.Inject
 
 class MuseumListViewModel @Inject constructor(
+    private val errorResponseHandler: ErrorResponseHandler,
     private val service: MuseumApiService
 ) : BaseViewModel() {
 
-    private val museumCollections = MutableLiveData<List<Museum>>()
+    private val museumCollections = MutableLiveData<List<MuseumArt>>()
 
-    fun getMuseumCollections(): LiveData<List<Museum>> = museumCollections
+    private val errorResponse = MutableLiveData<ErrorResponse>()
+
+    fun getErrorResponse(): LiveData<ErrorResponse> = errorResponse
+
+    fun getMuseumCollections(): LiveData<List<MuseumArt>> = museumCollections
 
     fun fetchMuseumCollections() {
         service.getMuseumCollection()
@@ -28,11 +35,12 @@ class MuseumListViewModel @Inject constructor(
             .doAfterTerminate { finishLoading() }
             .subscribeBy(
                 onSuccess = { resp ->
-                    resp.museums?.let { museums ->
+                    resp.museumArts?.let { museums ->
                         museumCollections.postValue(museums)
-                    } ?: Constants.log("Museum list empty")
+                    } ?: Constants.log("MuseumArt list empty")
                 },
                 onError = { error ->
+                    errorResponse.postValue(errorResponseHandler.handleException(error))
                     Constants.log("Error fetching museum collections : $error")
                 }
             )

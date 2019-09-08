@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
@@ -18,7 +17,6 @@ import nl.rijksmuseum.utils.ext.observe
 import nl.rijksmuseum.utils.ext.toast
 import javax.inject.Inject
 
-
 class ProfileFragment : DaggerFragment() {
 
     @Inject
@@ -27,7 +25,6 @@ class ProfileFragment : DaggerFragment() {
     private val viewModel: ProfileViewModel by viewModels { viewModelFactory }
 
     private lateinit var binding: FragmentProfileBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +56,8 @@ class ProfileFragment : DaggerFragment() {
     private fun subscribeUI() {
         observe(viewModel.getProfile()) { profile ->
             binding.apply {
-                profileGithub.setOnClickListener { openWebView(profile.githubUrl) }
+                profileGithub.setOnClickListener { openWebView(profile.githubUrl, "Github Profile") }
+                profileDicoding.setOnClickListener { openWebView(profile.dicodingProfileUrl, "Dicoding Profile") }
                 profileEmail.setOnClickListener { goToEmailIntent(profile.email) }
                 profileWhatsapp.setOnClickListener { goToWhatsAppIntent(profile.phone) }
             }
@@ -68,7 +66,7 @@ class ProfileFragment : DaggerFragment() {
 
     private fun goToEmailIntent(email: String) {
 
-        val subject = "Rijks Museum Art"
+        val subject = "Rijks MuseumArt Art"
         val message = "Hi Muhammad Yaqub," + "\n" + "Nice Android Application !"
 
         val i = Intent(Intent.ACTION_SEND).apply {
@@ -81,9 +79,12 @@ class ProfileFragment : DaggerFragment() {
         startActivity(Intent.createChooser(i, "Send email :"))
     }
 
-    private fun openWebView(url: String) {
-        val i = Intent(activity, WebViewActivity::class.java)
-            .putExtra("url", url)
+    private fun openWebView(url: String, title: String) {
+        val i = Intent(activity, WebViewActivity::class.java).apply {
+            putExtra("url", url)
+            putExtra("title", title)
+        }
+
         startActivity(i)
     }
 

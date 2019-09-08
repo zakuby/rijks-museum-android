@@ -1,16 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="nl.rijksmuseum.screens.museum.viewmodel.MuseumDetailViewModel" />
 
     </data>
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </RelativeLayout>
+        <include layout="@layout/view_offline"
+            android:id="@+id/error_layout"
+            android:visibility="gone"/>
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                shimmer:shimmer_auto_start="true"
+                tools:visibility="gone">
+
+                <include layout="@layout/skeleton_fragment_museum_detail" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/museum_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/list_item_museum_image_desc"
+                        android:scaleType="centerCrop"
+                        android:src="@color/athens_gray"
+                        app:loadImageUrl="@{viewModel.museumArt.webImage.url}" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/museum_image"
+                        android:layout_margin="24dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:fontFamily="@string/roboto_light"
+                            android:text="@{viewModel.museumArt.getArtDate()}"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            tools:text="2019-07-05" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@string/roboto_black"
+                            android:text="@{viewModel.museumArt.longTitle}"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            tools:text="The Night Watch, Rembrandt van Rijn, 1642" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@string/roboto_light"
+                            android:text="@{viewModel.museumArt.getArtSubtitle()}"
+                            android:textSize="16sp"
+                            android:textStyle="italic"
+                            tools:text="oil on canvas, h 379.5cm × w 453.5cm × w 337kg" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@string/roboto_light"
+                            android:text="@{viewModel.museumArt.principalOrFirstMaker}"
+                            android:textSize="14sp"
+                            android:textStyle="italic"
+                            tools:text="Rembrandt Harmensz. van Rijn" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@string/roboto_condensed"
+                            android:text="@{viewModel.museumArt.getArtDescription()}"
+                            android:textSize="18sp"
+                            android:textStyle="normal"
+                            tools:text="Rembrandt’s largest and most famous painting was made for one of the three headquarters of Amsterdam’s civic guard. These groups of civilian soldiers defended the city from attack. Rembrandt was the first to paint all of the figures in a civic guard piece in action. The captain, dressed in black, gives the order to march out. The guardsmen are getting into formation. Rembrandt used the light to focus on particular details, like the captain’s gesturing hand and the young girl in the foreground. She was the company mascot. The nickname Night Watch originated much later, when the painting was thought to represent a nocturnal scene." />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+        </FrameLayout>
+    </FrameLayout>
+
+
+
 </layout>

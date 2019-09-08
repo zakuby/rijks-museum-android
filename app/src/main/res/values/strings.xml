@@ -9,7 +9,10 @@
     <string name="list_item_museum_image_desc">Museum Image</string>
     <string name="profile_github_account">Github Account</string>
     <string name="profile_full_name">Nama Lengkap</string>
-    <string name="museum_detail_title">Museum Detail</string>
+    <string name="museum_detail_title">Museum Art Detail</string>
     <string name="museum_list_title">Rijks Museum Arts</string>
     <string name="title_profile">Profile</string>
+    <string name="profile_dicoding_account">Dicoding Account</string>
+    <string name="error_no_internet_connection">No internet connection Please try again.</string>
+    <string name="button_retry">Retry</string>
 </resources>

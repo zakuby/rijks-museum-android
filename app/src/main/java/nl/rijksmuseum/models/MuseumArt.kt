@@ -1,7 +1,9 @@
 package nl.rijksmuseum.models
 
-data class Museum(
-    val id: String? = "",
+import com.google.gson.annotations.SerializedName
+
+data class MuseumArt(
+    @SerializedName("objectNumber") val id: String? = "",
     val title: String? = "",
     val longTitle: String? = "",
     val principalOrFirstMaker: String? = "",

@@ -67,7 +67,6 @@ ext {
 
     //aac
     lifecycle_version = '2.0.0'
-    pagingVersion = '1.0.1'
 
     //dependency injection
     daggerVersion = '2.22.1'
@@ -88,8 +87,6 @@ dependencies {
     implementation "de.hdodenhof:circleimageview:$circleImageVersion"
 
     //Android Architecture Component
-    //Paging Library
-    implementation "android.arch.paging:runtime:$pagingVersion"
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     // Navigation Kotlin

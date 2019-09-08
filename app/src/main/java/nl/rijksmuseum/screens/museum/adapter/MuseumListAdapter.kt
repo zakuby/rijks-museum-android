@@ -4,16 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import nl.rijksmuseum.databinding.ListItemMuseumBinding
-import nl.rijksmuseum.models.Museum
+import nl.rijksmuseum.models.MuseumArt
 
 class MuseumListAdapter(
     val onClick: (String) -> Unit
 ) : RecyclerView.Adapter<MuseumListAdapter.ViewHolder>() {
 
-    private var museums: List<Museum> = emptyList()
+    private var museumArts: List<MuseumArt> = emptyList()
 
-    fun loadMuseumCollections(museums: List<Museum>) {
-        this.museums = museums
+    fun loadMuseumCollections(museums: List<MuseumArt>) {
+        this.museumArts = museums
         notifyDataSetChanged()
     }
 
@@ -23,15 +23,15 @@ class MuseumListAdapter(
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = museums.count()
+    override fun getItemCount(): Int = museumArts.count()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val museum = museums[position]
+        val museumArt = museumArts[position]
         holder.apply {
-            bind(museum)
+            bind(museumArt)
             itemView.setOnClickListener {
-                museum.id ?: return@setOnClickListener
-                onClick(museum.id)
+                museumArt.id ?: return@setOnClickListener
+                onClick(museumArt.id)
             }
         }
     }
@@ -39,6 +39,6 @@ class MuseumListAdapter(
     inner class ViewHolder(
         private val binding: ListItemMuseumBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: Museum) = binding.apply { this.model = model }
+        fun bind(model: MuseumArt) = binding.apply { this.model = model }
     }
 }

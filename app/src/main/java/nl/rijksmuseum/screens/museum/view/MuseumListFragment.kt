@@ -9,10 +9,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
+import nl.rijksmuseum.core.network.response.ErrorResponse
+import nl.rijksmuseum.core.network.response.ErrorResponse.Type.GENERAL
+import nl.rijksmuseum.core.network.response.ErrorResponse.Type.HOTSPOT_LOGIN
 import nl.rijksmuseum.databinding.FragmentMuseumListBinding
 import nl.rijksmuseum.screens.museum.adapter.MuseumListAdapter
 import nl.rijksmuseum.screens.museum.viewmodel.MuseumListViewModel
+import nl.rijksmuseum.utils.Constants
 import nl.rijksmuseum.utils.ext.observe
+import nl.rijksmuseum.utils.ext.toast
 import javax.inject.Inject
 
 class MuseumListFragment : DaggerFragment() {
@@ -36,6 +41,7 @@ class MuseumListFragment : DaggerFragment() {
             .apply {
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = this@MuseumListFragment.viewModel
+                errorLayout.retryButton.setOnClickListener { loadData() }
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(requireActivity())
                     adapter = this@MuseumListFragment.adapter
@@ -46,17 +52,36 @@ class MuseumListFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.fetchMuseumCollections()
+        loadData()
         subscribeUI()
     }
 
     private fun subscribeUI() {
-        observe(viewModel.getMuseumCollections()) { museums ->
-            adapter.loadMuseumCollections(museums)
+        observe(viewModel.getMuseumCollections()) { museumArts ->
+            adapter.loadMuseumCollections(museumArts)
         }
-        observe(viewModel.getLoading()) { isLoading ->
-            if (isLoading) startShimmer() else stopShimmer()
+        observe(viewModel.getLoading()) { isLoading -> if (isLoading) startShimmer() else stopShimmer() }
+        observe(viewModel.getErrorResponse()) { error -> onErrorResponse(error) }
+    }
+
+    private fun onErrorResponse(error: ErrorResponse) {
+        binding.apply {
+            container.visibility = View.GONE
+            errorLayout.message.text = error.message ?: "Internal server error."
+            errorLayout.errorView.visibility = View.VISIBLE
         }
+        when (error.type) {
+            GENERAL, HOTSPOT_LOGIN -> requireActivity().toast(error.message ?: "Internal server error.")
+            else -> Constants.log("Error type : ${error.type}")
+        }
+    }
+
+    private fun loadData() {
+        binding.apply {
+            errorLayout.errorView.visibility = View.GONE
+            container.visibility = View.VISIBLE
+        }
+        viewModel.fetchMuseumCollections()
     }
 
     private fun startShimmer() {
@@ -80,7 +105,8 @@ class MuseumListFragment : DaggerFragment() {
     }
 
     private fun navigateToDetail(museumId: String) {
-        val direction = MuseumListFragmentDirections.actionMuseumListFragmentToMuseumDetailFragment(museumId)
+        val direction =
+            MuseumListFragmentDirections.actionMuseumListFragmentToMuseumDetailFragment(museumId)
         findNavController().navigate(direction)
     }
 }

@@ -5,7 +5,6 @@ import dagger.android.ContributesAndroidInjector
 import nl.rijksmuseum.core.dagger.ActivityScoped
 import nl.rijksmuseum.screens.WebViewActivity
 import nl.rijksmuseum.screens.museum.view.MuseumActivity
-import nl.rijksmuseum.screens.profile.ProfileFragment
 
 @Module
 abstract class ActivityModule {

@@ -21,11 +21,6 @@ class MuseumActivity : BaseActivity<ActivityMuseumBinding>(R.layout.activity_mus
     private fun setupActivity() {
         val toolbar = binding.toolbar
         setSupportActionBar(toolbar)
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            val profileMenu = toolbar.menu.findItem(R.menu.menu_profile)
-//            profileMenu ?: return@addOnDestinationChangedListener
-//            profileMenu.isVisible = destination.id != R.id.action_to_profile
-//        }
         setupActionBarWithNavController(navController)
     }
 
@@ -49,6 +44,6 @@ class MuseumActivity : BaseActivity<ActivityMuseumBinding>(R.layout.activity_mus
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return findNavController(R.id.nav_host).navigateUp() || super.onSupportNavigateUp()
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

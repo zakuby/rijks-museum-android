@@ -144,9 +144,37 @@
             android:textStyle="bold" />
 
         <View
+            android:id="@+id/separator_profile_github"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/profile_github"
+            android:background="@color/athens_gray" />
+
+        <TextView
+            android:id="@+id/profile_dicoding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/separator_profile_github"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:drawableStart="@drawable/ic_dicoding"
+            android:drawableLeft="@drawable/ic_dicoding"
+            android:drawableEnd="@drawable/ic_chevron_right"
+            android:drawableRight="@drawable/ic_chevron_right"
+            android:drawablePadding="10dp"
+            android:fontFamily="@string/roboto_black"
+            android:gravity="center|start"
+            android:padding="10dp"
+            android:text="@string/profile_dicoding_account"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/separator_profile_dicoding"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/profile_dicoding"
             android:background="@color/athens_gray" />
 
     </RelativeLayout>

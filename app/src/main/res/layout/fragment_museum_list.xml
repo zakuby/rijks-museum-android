@@ -14,28 +14,36 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <include layout="@layout/view_offline"
+            android:id="@+id/error_layout"
+            android:visibility="gone"/>
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_view"
+        <FrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            shimmer:shimmer_auto_start="true"
-            tools:visibility="gone">
+            android:layout_height="match_parent">
 
-            <include layout="@layout/skeleton_fragment_museum_list" />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                shimmer:shimmer_auto_start="true"
+                tools:visibility="gone">
 
-        </com.facebook.shimmer.ShimmerFrameLayout>
+                <include layout="@layout/skeleton_fragment_museum_list" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            tools:itemCount="5"
-            tools:listitem="@layout/list_item_museum"
-            tools:visibility="visible" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                tools:itemCount="5"
+                tools:listitem="@layout/list_item_museum"
+                tools:visibility="visible" />
+
+        </FrameLayout>
     </FrameLayout>
-
 
 </layout>
