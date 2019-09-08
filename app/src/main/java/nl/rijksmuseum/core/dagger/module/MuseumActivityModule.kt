@@ -5,7 +5,7 @@ import dagger.android.ContributesAndroidInjector
 import nl.rijksmuseum.core.dagger.FragmentScoped
 import nl.rijksmuseum.screens.museum.view.MuseumDetailFragment
 import nl.rijksmuseum.screens.museum.view.MuseumListFragment
-import nl.rijksmuseum.screens.profile.ProfileActivity
+import nl.rijksmuseum.screens.profile.ProfileFragment
 
 @Module
 abstract class MuseumActivityModule {
@@ -16,4 +16,8 @@ abstract class MuseumActivityModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract fun contributeMuseumDetailFragment(): MuseumDetailFragment
+
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract fun contributeProfileFragment(): ProfileFragment
 }

@@ -2,14 +2,11 @@ package nl.rijksmuseum.screens.museum.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import nl.rijksmuseum.R
 import nl.rijksmuseum.databinding.ListItemMuseumBinding
 import nl.rijksmuseum.models.Museum
-import nl.rijksmuseum.screens.museum.view.MuseumListFragmentDirections
 
-class MuseumListAdapter (
+class MuseumListAdapter(
     val onClick: (String) -> Unit
 ) : RecyclerView.Adapter<MuseumListAdapter.ViewHolder>() {
 

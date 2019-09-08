@@ -6,5 +6,4 @@ import javax.inject.Inject
 
 class MuseumDetailViewModel @Inject constructor(
     private val service: MuseumApiService
-): BaseViewModel() {
-}
+) : BaseViewModel()

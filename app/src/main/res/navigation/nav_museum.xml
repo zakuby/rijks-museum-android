@@ -5,6 +5,13 @@
     android:id="@+id/nav_museum"
     app:startDestination="@id/museumListFragment">
 
+    <action android:id="@+id/action_to_profile"
+        app:destination="@id/profileFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
+
     <fragment
         android:id="@+id/museumListFragment"
         android:name="nl.rijksmuseum.screens.museum.view.MuseumListFragment"
@@ -27,4 +34,9 @@
             android:name="museumId"
             app:argType="string"/>
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="nl.rijksmuseum.screens.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile"/>
 </navigation>

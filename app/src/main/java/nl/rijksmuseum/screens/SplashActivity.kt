@@ -14,10 +14,9 @@ class SplashActivity : AppCompatActivity() {
         navigateToMuseum()
     }
 
-    private fun navigateToMuseum(){
+    private fun navigateToMuseum() {
         val i = Intent(this, MuseumActivity::class.java)
         startActivity(i)
         finish()
     }
-
 }

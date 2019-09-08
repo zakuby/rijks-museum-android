@@ -3,8 +3,9 @@ package nl.rijksmuseum.core.dagger.module
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import nl.rijksmuseum.core.dagger.ActivityScoped
+import nl.rijksmuseum.screens.WebViewActivity
 import nl.rijksmuseum.screens.museum.view.MuseumActivity
-import nl.rijksmuseum.screens.profile.ProfileActivity
+import nl.rijksmuseum.screens.profile.ProfileFragment
 
 @Module
 abstract class ActivityModule {
@@ -14,5 +15,5 @@ abstract class ActivityModule {
 
     @ActivityScoped
     @ContributesAndroidInjector
-    abstract fun contributeProfileActivity(): ProfileActivity
+    abstract fun contributeWebViewActivity(): WebViewActivity
 }

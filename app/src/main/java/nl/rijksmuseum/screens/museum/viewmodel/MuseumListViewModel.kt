@@ -14,11 +14,11 @@ import javax.inject.Inject
 
 class MuseumListViewModel @Inject constructor(
     private val service: MuseumApiService
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val museumCollections = MutableLiveData<List<Museum>>()
 
-    fun getMuseumCollections() : LiveData<List<Museum>> = museumCollections
+    fun getMuseumCollections(): LiveData<List<Museum>> = museumCollections
 
     fun fetchMuseumCollections() {
         service.getMuseumCollection()
@@ -26,7 +26,7 @@ class MuseumListViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { setLoading() }
             .doAfterTerminate { finishLoading() }
-            .subscribeBy (
+            .subscribeBy(
                 onSuccess = { resp ->
                     resp.museums?.let { museums ->
                         museumCollections.postValue(museums)
@@ -37,7 +37,5 @@ class MuseumListViewModel @Inject constructor(
                 }
             )
             .disposedBy(compositeDisposable)
-
     }
-
 }

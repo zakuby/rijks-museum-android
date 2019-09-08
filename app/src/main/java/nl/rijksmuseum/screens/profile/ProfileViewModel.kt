@@ -12,6 +12,5 @@ class ProfileViewModel @Inject constructor() : BaseViewModel() {
 
     init { profile.postValue(Profile()) }
 
-
     fun getProfile(): LiveData<Profile> = profile
 }
