@@ -23,14 +23,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmer_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 shimmer:shimmer_auto_start="true"
                 tools:visibility="gone">
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <include layout="@layout/skeleton_fragment_museum_list" />
+                </androidx.core.widget.NestedScrollView>
 
-                <include layout="@layout/skeleton_fragment_museum_list" />
 
             </com.facebook.shimmer.ShimmerFrameLayout>
 

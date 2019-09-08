@@ -13,6 +13,7 @@ import nl.rijksmuseum.core.network.response.ErrorResponse.Type.*
 import nl.rijksmuseum.databinding.FragmentMuseumDetailBinding
 import nl.rijksmuseum.screens.museum.viewmodel.MuseumDetailViewModel
 import nl.rijksmuseum.utils.Constants
+import nl.rijksmuseum.utils.ext.detectNetworkHealth
 import nl.rijksmuseum.utils.ext.observe
 import nl.rijksmuseum.utils.ext.toast
 import javax.inject.Inject
@@ -37,7 +38,10 @@ class MuseumDetailFragment : DaggerFragment() {
             .apply {
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = this@MuseumDetailFragment.viewModel
-                errorLayout.retryButton.setOnClickListener { loadData() }
+                errorLayout.retryButton.setOnClickListener {
+                    val isNetworkConnected = requireActivity().detectNetworkHealth()
+                    if (isNetworkConnected) loadData()
+                }
             }
         return binding.root
     }
@@ -49,11 +53,11 @@ class MuseumDetailFragment : DaggerFragment() {
     }
 
     private fun loadData() {
+        viewModel.fetchMuseumArtDetail(args.museumId)
         binding.apply {
             errorLayout.errorView.visibility = View.GONE
             container.visibility = View.VISIBLE
         }
-        viewModel.fetchMuseumArtDetail(args.museumId)
     }
 
     private fun subscribeUI() {

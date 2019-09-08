@@ -16,6 +16,7 @@ import nl.rijksmuseum.databinding.FragmentMuseumListBinding
 import nl.rijksmuseum.screens.museum.adapter.MuseumListAdapter
 import nl.rijksmuseum.screens.museum.viewmodel.MuseumListViewModel
 import nl.rijksmuseum.utils.Constants
+import nl.rijksmuseum.utils.ext.detectNetworkHealth
 import nl.rijksmuseum.utils.ext.observe
 import nl.rijksmuseum.utils.ext.toast
 import javax.inject.Inject
@@ -41,7 +42,10 @@ class MuseumListFragment : DaggerFragment() {
             .apply {
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = this@MuseumListFragment.viewModel
-                errorLayout.retryButton.setOnClickListener { loadData() }
+                errorLayout.retryButton.setOnClickListener {
+                    val isNetworkConnected = requireActivity().detectNetworkHealth()
+                    if (isNetworkConnected) loadData()
+                }
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(requireActivity())
                     adapter = this@MuseumListFragment.adapter
@@ -77,11 +81,11 @@ class MuseumListFragment : DaggerFragment() {
     }
 
     private fun loadData() {
+        viewModel.fetchMuseumCollections()
         binding.apply {
             errorLayout.errorView.visibility = View.GONE
             container.visibility = View.VISIBLE
         }
-        viewModel.fetchMuseumCollections()
     }
 
     private fun startShimmer() {

@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.activity_museum.*
 import nl.rijksmuseum.databinding.FragmentProfileBinding
 import nl.rijksmuseum.screens.WebViewActivity
 import nl.rijksmuseum.utils.ext.observe
