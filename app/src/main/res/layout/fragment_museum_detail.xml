@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="viewModel"
@@ -16,14 +19,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/view_offline"
+        <include
             android:id="@+id/error_layout"
-            android:visibility="gone"/>
+            layout="@layout/view_offline"
+            android:visibility="@{viewModel.isResponseError ? View.VISIBLE : View.GONE}"
+            bind:model="@{viewModel.errorResponse}"
+            tools:visibility="gone" />
 
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.isResponseError ? View.GONE : View.VISIBLE}">
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmer_view"
@@ -55,7 +62,7 @@
                         android:contentDescription="@string/list_item_museum_image_desc"
                         android:scaleType="centerCrop"
                         android:src="@color/athens_gray"
-                        app:loadImageUrl="@{viewModel.museumArt.webImage.url}" />
+                        bind:loadImageUrl="@{viewModel.museumArt.webImage.url}" />
 
 
                     <LinearLayout
@@ -121,7 +128,6 @@
             </androidx.core.widget.NestedScrollView>
         </FrameLayout>
     </FrameLayout>
-
 
 
 </layout>

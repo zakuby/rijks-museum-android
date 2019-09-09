@@ -1,5 +1,6 @@
 package nl.rijksmuseum.screens.museum.viewmodel
 
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,6 +24,8 @@ class MuseumDetailViewModel @Inject constructor(
 
     private val errorResponse = MutableLiveData<ErrorResponse>()
 
+    val isResponseError = ObservableBoolean(false)
+
     fun getErrorResponse(): LiveData<ErrorResponse> = errorResponse
 
     fun getMuseumArt(): LiveData<MuseumArtDetail> = museumArt
@@ -35,11 +38,13 @@ class MuseumDetailViewModel @Inject constructor(
             .doAfterTerminate { finishLoading() }
             .subscribeBy(
                 onSuccess = { resp ->
+                    isResponseError.set(false)
                     resp.museumArt?.let { museumArtDetail ->
                         museumArt.postValue(museumArtDetail)
                     } ?: Constants.log("Error fetching museum art detail, data is null")
                 },
                 onError = { error ->
+                    isResponseError.set(true)
                     errorResponse.postValue(errorResponseHandler.handleException(error))
                     Constants.log("Error fetching museum art detail : $error")
                 }

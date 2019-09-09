@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="model"
+            type="nl.rijksmuseum.core.network.response.ErrorResponse" />
+    </data>
 
     <LinearLayout
         android:id="@+id/error_view"
@@ -17,7 +24,8 @@
             android:drawableTop="@drawable/ic_error"
             android:fontFamily="@string/roboto_light"
             android:textAlignment="center"
-            android:text="@string/error_no_internet_connection"
+            android:text="@{model.message}"
+            tools:text="@string/error_no_internet_connection"
             android:textSize="18sp" />
 
         <com.google.android.material.button.MaterialButton

@@ -32,21 +32,29 @@
                 tools:title="Webview" />
         </com.google.android.material.appbar.AppBarLayout>
 
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
+        <FrameLayout
             android:layout_below="@id/app_bar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:indeterminate="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="5dp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:indeterminate="true"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+        </FrameLayout>
+
 
         <WebView
             android:layout_below="@id/app_bar"
             android:id="@+id/web_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            tools:visibility="gone"/>
 
     </RelativeLayout>
 </layout>
