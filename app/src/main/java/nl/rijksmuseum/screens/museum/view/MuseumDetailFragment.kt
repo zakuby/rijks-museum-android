@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import dagger.android.support.DaggerFragment
-import nl.rijksmuseum.core.network.response.ErrorResponse.Type.*
 import nl.rijksmuseum.databinding.FragmentMuseumDetailBinding
 import nl.rijksmuseum.screens.museum.viewmodel.MuseumDetailViewModel
 import nl.rijksmuseum.utils.ext.detectNetworkHealth
@@ -51,10 +50,6 @@ class MuseumDetailFragment : DaggerFragment() {
 
     private fun loadData() {
         viewModel.fetchMuseumArtDetail(args.museumId)
-        binding.apply {
-            errorLayout.errorView.visibility = View.GONE
-            container.visibility = View.VISIBLE
-        }
     }
 
     private fun subscribeUI() {

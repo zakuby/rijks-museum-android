@@ -65,7 +65,7 @@ class ProfileFragment : DaggerFragment() {
 
     private fun goToEmailIntent(email: String) {
 
-        val subject = "Rijks MuseumArt Art"
+        val subject = "Rijks Museum Art"
         val message = "Hi Muhammad Yaqub," + "\n" + "Nice Android Application !"
 
         val i = Intent(Intent.ACTION_SEND).apply {

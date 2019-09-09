@@ -61,10 +61,6 @@ class MuseumListFragment : DaggerFragment() {
 
     private fun loadData() {
         viewModel.fetchMuseumCollections()
-        binding.apply {
-            errorLayout.errorView.visibility = View.GONE
-            container.visibility = View.VISIBLE
-        }
     }
 
     private fun startShimmer() {
