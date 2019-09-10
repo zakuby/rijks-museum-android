@@ -17,10 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/skeleton_image"
-        android:padding="24dp"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="24dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
@@ -34,7 +34,8 @@
             android:layout_height="10dp"
             android:layout_marginTop="5dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -43,7 +44,8 @@
             android:layout_marginEnd="100dp"
             android:layout_marginRight="100dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
@@ -52,14 +54,16 @@
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_marginTop="10dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -68,14 +72,16 @@
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_marginTop="5dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -84,14 +90,16 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_marginTop="5dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -100,14 +108,16 @@
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_marginTop="5dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -116,7 +126,8 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             app:cardBackgroundColor="@color/athens_gray"
-            app:cardCornerRadius="5dp" />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp" />
 
     </LinearLayout>
 
