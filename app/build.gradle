@@ -8,6 +8,26 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        def date = new Date()
+        def formattedDate = date.format('dd_MMM_yyyy')
+        outputFileName = "rijks_museum"
+        outputFileName += "-" + formattedDate
+        switch (variant.buildType.name) {
+            case "release":
+                outputFileName += "-prod.apk"
+                break
+            case "debug":
+                outputFileName += "-dev.apk"
+                break
+            default:
+                outputFileName += "-" + variant.buildType.name + ".apk"
+                break
+        }
+    }
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -19,12 +39,24 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        production {
+            keyAlias 'RijksMuseum'
+            keyPassword 'museumrijks'
+            storeFile file('../rijksmuseum-keystore.jks')
+            storePassword 'keystore123'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'BASE_URL', '"https://www.rijksmuseum.nl/api/en/"'
             buildConfigField 'String', 'API_KEY', '"Kt12e7FH"'
+            signingConfig signingConfigs.production
         }
         debug {
             buildConfigField 'String', 'BASE_URL', '"https://www.rijksmuseum.nl/api/en/"'
@@ -66,7 +98,7 @@ ext {
     funktionaleVersion = '1.2'
 
     //aac
-    lifecycle_version = '2.0.0'
+    lifecycle_version = '2.1.0'
 
     //dependency injection
     daggerVersion = '2.22.1'
@@ -75,8 +107,8 @@ ext {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
 
     //For layouting purpose
     implementation "com.google.android.material:material:$materialVersion"
