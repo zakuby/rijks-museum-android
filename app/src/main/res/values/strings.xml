@@ -15,4 +15,5 @@
     <string name="profile_dicoding_account">Dicoding Account</string>
     <string name="error_no_internet_connection">No internet connection Please try again.</string>
     <string name="button_retry">Retry</string>
+    <string name="error_no_whatsapp">Please Install Whatsapp.</string>
 </resources>

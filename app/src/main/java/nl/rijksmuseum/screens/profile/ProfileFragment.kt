@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
+import nl.rijksmuseum.R
 import nl.rijksmuseum.databinding.FragmentProfileBinding
 import nl.rijksmuseum.screens.WebViewActivity
 import nl.rijksmuseum.utils.ext.observe
@@ -99,7 +100,7 @@ class ProfileFragment : DaggerFragment() {
             }
             startActivity(i)
         } catch (e: Exception) {
-            requireActivity().toast("Please Install Whatsapp.")
+            requireActivity().toast(R.string.error_no_whatsapp)
             try {
                 startActivity(
                     Intent(

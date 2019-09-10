@@ -9,8 +9,11 @@ import android.os.Build
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
+@Suppress("DEPRECATION")
 fun Context.detectNetworkHealth(): Boolean {
     val connectivityManager =
         this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -35,10 +38,5 @@ fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, body: (T) -> 
     liveData.observe(this, Observer(body))
 }
 
-fun Activity.toast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 fun Activity?.toast(@StringRes resId: Int) =
     Toast.makeText(this, this?.getString(resId), Toast.LENGTH_SHORT).show()
-
-fun Activity.longToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-fun Activity?.longToast(@StringRes resId: Int) =
-    Toast.makeText(this, this?.getString(resId), Toast.LENGTH_LONG).show()
